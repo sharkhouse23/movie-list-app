@@ -1,16 +1,14 @@
 import React from 'react';
 
-var MovieList = (props) => {
-  return (
+var MovieList = (props) => (
     <div className="movie-titles">
     	{
     		props.movies.map(function(movie) {
-    			return <div className="movie-title">{movie}</div>
+    			return <div className="movie-title">{movie.title}</div>
     		})
     	}
     </div>
-  );
-};
+);
 
 
 

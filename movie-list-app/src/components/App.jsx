@@ -1,55 +1,37 @@
 import React, {Component} from 'react';
-import MovieList from './MovieList.jsx'
-import Search from './Search.jsx'
+import MovieList from './MovieList.jsx';
+import Search from './Search.jsx';
+import movieData from './exampleMovieData.jsx'
 
 // import '../styles/App.css';
-
-// var movies = [
-//   {title: 'Mean Girls'},
-//   {title: 'Hackers'},
-//   {title: 'The Grey'},
-//   {title: 'Sunshine'},
-//   {title: 'Ex Machina'}
-// ];
 
 class App extends Component {
   constructor(props) {
     super(props);
+    // console.log(movieData);
     this.state = { 
-      movies: [
-        'Mean Girls',
-        'Hackers',
-        'The Grey',
-        'Sunshine',
-        'Ex Machina'
-      ],
-      result: []
+      movies: movieData
     };
   };
 
-  componentDidMount() {
-    this.setState({result: this.state.movies});
-  }
+  handleSearch(event) {
+    // console.log(event.target.value);
+    var input = event.target.value;
+    // console.log(input);
+   
+    var query = this.state.movies.filter((movie) =>   movie.title.toLowerCase().includes(input));
+   // console.log(query);
+    this.setState({movies: query});
 
-  runSearch(input) {
-    var movieArr = this.state.movies;
-    var matchArr = [];
-
-    var func = function(input) {
-      for (var i = 0; i < movieArr.length; i++) {
-        if (movieArr[i].includes(input)) {
-          matchArr.push(movieArr[i]);
-        }
-      }
-      this.setState({result: matchArr})
-    }
-    func();
+    // if (!this.state.movies.title.include(input)) {
+    //   this.setState()
+    // }
   }
 
   render() {
     return (
       <div>
-        <Search runSearch={this.runSearch.bind(this)} />
+        <Search handleSearch={this.handleSearch.bind(this)} />
         <MovieList movies={this.state.movies} />
       </div>
     );

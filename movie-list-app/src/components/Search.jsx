@@ -1,17 +1,13 @@
 import React from 'react';
 
-var Search = (props) => {
-  return (
+var Search = (props) => (
+	return (
     <div>
-    	{
-    		<form>
-				<input type='text' placeholder="Search.." value={input} onChange={runSearch(input)}/>
+				<input type="text" placeholder="Search.." onChange={props.handleSearch}></input>
 				<button type="submit" value="Submit"></button>
-				</form>
-    	}
     </div>
   );
-};
+);
 
 
 
