@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import MovieList from './MovieList.jsx';
 import Search from './Search.jsx';
-import movieData from './exampleMovieData.jsx'
+import movieData from './exampleMovieData.jsx';
+import MovieInput from './MovieInput.jsx';
 
 // import '../styles/App.css';
 
@@ -10,7 +11,8 @@ class App extends Component {
     super(props);
     // console.log(movieData);
     this.state = { 
-      movies: movieData
+      movies: movieData,
+      input: []
     };
   };
 
@@ -19,19 +21,25 @@ class App extends Component {
     var input = event.target.value;
     // console.log(input);
    
-    var query = this.state.movies.filter((movie) =>   movie.title.toLowerCase().includes(input));
+    var query = this.state.movies.filter((movie) => movie.title.toLowerCase().includes(input));
    // console.log(query);
     this.setState({movies: query});
+  }
 
-    // if (!this.state.movies.title.include(input)) {
-    //   this.setState()
-    // }
+  handleUndo() {
+    this.setState({movies: movieData})
+  }
+
+  addMovies() {
+
+
   }
 
   render() {
     return (
       <div>
-        <Search handleSearch={this.handleSearch.bind(this)} />
+        <MovieInput addMovies={this.addMovies.bind(this)} />
+        <Search handleSearch={this.handleSearch.bind(this)} handleUndo={this.handleUndo.bind(this)} />
         <MovieList movies={this.state.movies} />
       </div>
     );
