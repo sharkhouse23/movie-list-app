@@ -22,8 +22,8 @@ class MovieInput extends React.Component {
 	render() {
 		return (
 			<div>
-				<input type='text' value={this.state.input} onChange={this.handleChange.bind(this)} />
-				<button type='submit' onClick={props.addMovies}>Add a Movie</button>
+				<input type='text' onChange={this.handleChange.bind(this)} />
+				<button type='submit' value={this.state.input} onClick={this.props.addMovies}>Add a Movie</button>
 			</div>
 		)
 	}
