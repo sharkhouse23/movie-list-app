@@ -9,10 +9,11 @@ import MovieInput from './MovieInput.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
+    // console.log(props);
     // console.log(movieData);
     this.state = { 
       movies: movieData,
-      input: []
+      newMovie: ''
     };
   };
 
@@ -30,9 +31,13 @@ class App extends Component {
     this.setState({movies: movieData})
   }
 
-  addMovies() {
-
-
+  addMovies(event, newmovie) {
+    var newmovie = event.target.value
+    console.log(newmovie)
+    var obj = {title: newmovie}
+    console.log(obj);
+    this.setState({movies: [...this.state.movies, obj]});
+    this.setState({newMovie: newmovie})
   }
 
   render() {
